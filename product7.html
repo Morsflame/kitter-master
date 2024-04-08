@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product</title>
+  </head>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px;
+      display: flex;
+    }
+    .left-column {
+      width: 65%;
+      position: relative;
+    }
+
+    .right-column {
+      width: 35%;
+      margin-top: 60px;
+    }
+    .left-column img {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .left-column img.active {
+      opacity: 1;
+    }
+    .product-description {
+      border-bottom: 1px solid #e1e8ee;
+      margin-bottom: 20px;
+    }
+    .product-description span {
+      font-size: 12px;
+      color: #358ed7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .product-description h1 {
+      font-weight: 300;
+      font-size: 52px;
+      color: #43484d;
+      letter-spacing: -2px;
+    }
+    .product-description p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #86939e;
+      line-height: 24px;
+    }
+    .product-color {
+      margin-bottom: 30px;
+    }
+
+    .color-choose div {
+      display: inline-block;
+    }
+
+    .color-choose input[type="radio"] {
+      display: none;
+    }
+
+    .color-choose input[type="radio"] + label span {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: -1px 4px 0 0;
+      vertical-align: middle;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    }
+/* 
+    .color-choose input[type="radio"]#red + label span {
+     / background-color: #c91524;
+     }
+    .color-choose input[type="radio"]#blue + label span {
+      background-color: #314780;
+    }
+    .color-choose input[type="radio"]#black + label span {
+      background-color: #323232;
+    } */
+
+    .color-choose input[type="radio"]:checked + label span {
+      background-image: url(images/check-icn.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .cable-choose {
+      margin-bottom: 20px;
+    }
+
+    .cable-choose button {
+      border: 2px solid #e1e8ee;
+      border-radius: 6px;
+      padding: 13px 20px;
+      font-size: 14px;
+      color: #5e6977;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+
+    .cable-choose button:hover,
+    .cable-choose button:active,
+    .cable-choose button:focus {
+      border: 2px solid #86939e;
+      outline: none;
+    }
+
+    .cable-config {
+      border-bottom: 1px solid #e1e8ee;
+      margin-bottom: 20px;
+    }
+
+    .cable-config a {
+      color: #358ed7;
+      text-decoration: none;
+      font-size: 12px;
+      position: relative;
+      margin: 10px 0;
+      display: inline-block;
+    }
+
+    .cable-config a:before {
+      content: "?";
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      border: 2px solid rgba(53, 142, 215, 0.5);
+      display: inline-block;
+      text-align: center;
+      line-height: 16px;
+      opacity: 0.5;
+      margin-right: 5px;
+    }
+    .product-price {
+      display: flex;
+      align-items: center;
+    }
+
+    .product-price span {
+      font-size: 26px;
+      font-weight: 300;
+      color: #43474d;
+      margin-right: 20px;
+      /* align-items: center; */
+    }
+
+    .cart-btn {
+        /* margin-top: 100px; */
+      display: inline-block;
+      background-color: #7dc855;
+      border-radius: 6px;
+      font-size: 16px;
+      margin: 10px;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 30px;
+      transition: all 0.5s;
+    }
+    .cart-btn:hover {
+      background-color: #64af3d;
+    }
+    @media (max-width: 940px) {
+      .container {
+        flex-direction: column;
+        margin-top: 60px;
+      }
+
+      .left-column,
+      .right-column {
+        width: 100%;
+      }
+
+      .left-column img {
+        width: 300px;
+        right: 0;
+        top: -65px;
+        left: initial;
+      }
+    }
+
+    #myform {
+    text-align: center;
+    padding: px;
+    border: px dotted #ccc;
+    margin: %;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
+    @media (max-width: 535px) {
+      .left-column img {
+        width: 220px;
+        top: -85px;
+      }
+    }
+    .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 94%;
+  /* margin-right:; */
+  padding: 20px;
+  background-color: transparent; /* Transparent background */
+  z-index: 999; /* Ensure the header stays on top of other elements */
+}
+
+/* Styles for the login and bag options */
+.right-options {
+  float: right;
+}
+
+.login, .bag {
+  margin-left: 60px;
+  color: #000000; /* Change color as per your design */
+  text-decoration: none;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+  .login, .bag {
+    margin-left: 10px;
+  }
+}
+  </style>
+  <body>
+    <header class="header">
+        <!-- Login and Bag options -->
+        <div class="right-options">
+          <a href="#" class="login">Login</a>
+          <a href="#" class="bag">Bag</a>
+        </div>
+      </header>
+      
+    <main class="container">
+      <!-- Left Column / Headphones Image -->
+      <div class="left-column">
+        <!-- <img data-image="black" src="product-2.jpg" alt="" />
+        <img data-image="blue" src="product-2_0.jpg" alt="" /> -->
+        <img data-image="red" class="active" src="product-7.jpg" alt="" />
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Product Description -->
+        <div class="product-description">
+          <span>Kitter Food</span>
+          <h1>Shrimp Pellets</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            <!-- remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum. -->
+          </p>
+        </div>
+
+        <!-- Product Configuration
+        <!-- <div class="product-configuration">
+          <!-- Product Color -->
+          <div class="product-color">
+            <span>Quantity</span>
+
+            <div class="color-choose">
+              <div>
+                <form id='myform' method='POST' class='quantity' action='#'>
+                    <input type='button' value='-' class='qtyminus minus' field='quantity' />
+                    <input type='text' name='quantity' value='0' class='qty' />
+                    <input type='button' value='+' class='qtyplus plus' field='quantity' />
+                  </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cable Configuration -->
+          <!-- <div class="cable-config">
+            <span>Quantit</span>
+
+            <div class="cable-choose">
+              <button>Straight</button>
+              <button>Coiled</button>
+              <button>Long-coiled</button>
+            </div>
+
+            <a href="#">How to configurate your headphones</a>
+          </div>
+        </div> --> 
+
+        <!-- Product Pricing -->
+        <div class="product-price">
+          <span>148$</span>
+          <a href="#" class="cart-btn">Add to cart</a>
+          <a href="#" class="cart-btn">Buy Now</a>
+        </div>
+      </div>
+    </main>
+    <script>
+      $(document).ready(function () {
+        $(".color-choose input").on("click", function () {
+          var headphonesColor = $(this).attr("data-image");
+
+          $(".active").removeClass("active");
+          $(".left-column img[data-image = " + headphonesColor + "]").addClass(
+            "active"
+          );
+          $(this).addClass("active");
+        });
+      });
+      jQuery(document).ready(($) => {
+        $('.quantity').on('click', '.plus', function(e) {
+            let $input = $(this).prev('input.qty');
+            let val = parseInt($input.val());
+            $input.val( val+1 ).change();
+        });
+ 
+        $('.quantity').on('click', '.minus', 
+            function(e) {
+            let $input = $(this).next('input.qty');
+            var val = parseInt($input.val());
+            if (val > 0) {
+                $input.val( val-1 ).change();
+            } 
+        });
+    });
+    </script> 
+</html>
